@@ -3,7 +3,7 @@ import os
 import sqlite3
 from sqlite3 import Error
 
-db_nome = 'db_prova.sqlite3'
+"""db_nome = 'db_prova.sqlite3'
 path ='C:/Users/Public/documents/provavisualstudio'
 db_esiste = os.path.exists (db_nome)
 def connetti_db(db_nome):
@@ -47,6 +47,46 @@ def elenca_campi(tabella):
     print(r.keys())
 
 #elenca_campi('testi_autore')
-ins_dato_autori ()
+#ins_dato_autori ()
+
+
+d={'a':1,'b':2}
+def myfunc(x):
+    print (x)
+
+myfunc(d)"""
+
+class Tabella:
+
+    def __init__(self,nometab):
+        self.nometab=nometab
+        #apre la tabella 
+class Scrivieditore(Tabella):
+    def __init__(self,nometab,editore):
+       super().__init__(nometab)   
+       self.editore=editore
+     
+        # controlla che editore non sia già presente nella tabella
+    def strsql(self):
+        sqlstr1="(select * from "+self.nometab +"where editore=?),"+self.editore
+        print(sqlstr1)
+
+        #esegui la Query
+"""
+        c=cur.execute(sqlstr1)
+        c.fetchone
+        if c =None:
+        else
+        print("il nome è già presente nela tabella editori")
+"""
+        
+
+m1=Scrivieditore("editore","bompiani")
+m1.strsql()
+
+
+
+
+
 
 
