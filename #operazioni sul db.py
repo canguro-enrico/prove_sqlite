@@ -54,35 +54,51 @@ d={'a':1,'b':2}
 def myfunc(x):
     print (x)
 
-myfunc(d)"""
+myfunc(d)
+"""
 
 class Tabella:
+    db_nome = 'db_prova.sqlite3'
+    #percorso = "C:\Users\Public\Documents\ProvaVisualstudio"
 
     def __init__(self,nometab):
         self.nometab=nometab
-        #apre la tabella 
-class Scrivieditore(Tabella):
+        #apre il db e la tabella 
+        
+        if ( os.path.exists (self.db_nome)):
+            #ok
+            pass
+        else:
+            print ("database non trovato")
+            # da gestire
+
+       
+        
+
+
+
+class Editore(Tabella):
     def __init__(self,nometab,editore):
        super().__init__(nometab)   
        self.editore=editore
      
         # controlla che editore non sia già presente nella tabella
-    def strsql(self):
-        sqlstr1="(select * from "+self.nometab +"where editore=?),"+self.editore
-        print(sqlstr1)
-
-        #esegui la Query
-"""
-        c=cur.execute(sqlstr1)
-        c.fetchone
-        if c =None:
-        else
-        print("il nome è già presente nela tabella editori")
-"""
+    def cercaEditore(self):
+        sqlstr1="select * from "+self.nometab +" where editore = "+self.editore
+        con = sqlite3.connect (self.db_nome)
+        c =con.cursor()
+        c.execute("""SELECT * FROM testi_editore WHERE editore = 'edizioni lotta comunista' """)
+        print("ecco il risultato")
+        print (c.fetchone())
+        
         
 
-m1=Scrivieditore("editore","bompiani")
-m1.strsql()
+        
+        
+
+m1=Editore("testi_editore","edizioni lotta comunista")
+m1.cercaEditore()
+
 
 
 
