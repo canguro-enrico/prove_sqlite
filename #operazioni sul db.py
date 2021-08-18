@@ -3,7 +3,8 @@ import os
 import sqlite3
 from sqlite3 import Error
 
-"""db_nome = 'db_prova.sqlite3'
+db_nome = 'db_prova.sqlite3'
+"""
 path ='C:/Users/Public/documents/provavisualstudio'
 db_esiste = os.path.exists (db_nome)
 def connetti_db(db_nome):
@@ -96,8 +97,29 @@ class Editore(Tabella):
         
         
 
-m1=Editore("testi_editore","edizioni lotta comunista")
-m1.cercaEditore()
+#m1=Editore("testi_editore","edizioni lotta comunista")
+#m1.cercaEditore()
+
+
+# recupera i nomi dei campi
+con = sqlite3.connect (db_nome)
+c =con.cursor()
+str ="select * from testi_testo "
+c.execute(str)
+for col in c.description:
+    print (col)
+
+#recuperare i nomi delle tabelle
+
+c =con.cursor()
+str = "SELECT * FRom sqlite_master"
+c.execute(str)
+for col in c:
+    print (col)
+
+
+
+
 
 
 
