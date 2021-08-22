@@ -4,8 +4,9 @@ import sqlite3
 from sqlite3 import Error
 
 db_nome = 'db_prova.sqlite3'
-"""
 path ='C:/Users/Public/documents/provavisualstudio'
+"""
+
 db_esiste = os.path.exists (db_nome)
 def connetti_db(db_nome):
     
@@ -85,10 +86,14 @@ class Editore(Tabella):
      
         # controlla che editore non sia già presente nella tabella
     def cercaEditore(self):
-        sqlstr1="select * from "+self.nometab +" where editore = "+self.editore
+        
         con = sqlite3.connect (self.db_nome)
         c =con.cursor()
-        c.execute("""SELECT * FROM testi_editore WHERE editore = 'edizioni lotta comunista' """)
+        # come scrivere la stringa della query?
+        print(self.nometab,self.editore)
+        str = f'SELECT * FROM {self.nometab} WHERE editore ="{self.editore}"'
+        print (str)
+        c.execute(str)
         print("ecco il risultato")
         print (c.fetchone())
         
@@ -97,9 +102,9 @@ class Editore(Tabella):
         
         
 
-#m1=Editore("testi_editore","edizioni lotta comunista")
-#m1.cercaEditore()
-
+m1=Editore("testi_editore","edizioni lotta comunista")
+m1.cercaEditore()
+"""
 
 # recupera i nomi dei campi
 con = sqlite3.connect (db_nome)
@@ -118,13 +123,26 @@ for col in c:
     print (col)
 
 
+# occorre scrivere correttamente una classe che apre, chiude, cerca, modifica, aggiunge ecc
+class Apre_db():
 
+    # controlla che il db esista
+    database = path +"/"+db_nome
+    if ( os.path.exists (database)):
+        print("ok ho aperto il database")
+        con = sqlite3.connect (database)
+        
+        
+    else:
+        print ("database non trovato")
+        # da gestire con error
+            
 
+m1=Apre_db()
+c=m1.con.cursor()
+str ="select * from testi_testo "
+c.execute(str)
 
-
-
-
-
-
-
-
+for riga in c:
+    
+"""
